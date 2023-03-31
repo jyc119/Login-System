@@ -10,7 +10,7 @@ async function SubmitLogin() {
 
     var jsonreq = (`${JSON.stringify(obj)}`)
 
-    const response = await fetch('http://127.0.0.1:8000/html/login.html', {
+    const response = await fetch('http://127.0.0.1:8000/check-login/', {
     method: "POST",
     body: jsonreq,
     headers: {"Content-type": "application/json; charset=UTF-8"}
