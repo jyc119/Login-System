@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="action.js"></script>
+
+</head>
+<body>
+
+    <h1>Login Page</h1>
+    <div class="container">
+        <form method="POST" name="login" id="login">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br><br>
+            <label for="password">Password:</label><br>
+            <input type="text" id="password" name="password"><br><br>
+            <input
+                type="submit" 
+                value="Submit"
+                onclick="SubmitLogin(); this.disabled = true;"
+            >
+        </form>
+
+        <div class="response", style="color: red;">
+            <p>Incorrect Login info</p>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
