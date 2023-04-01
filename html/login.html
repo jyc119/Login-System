@@ -13,11 +13,35 @@
 
     <h1>Login Page</h1>
     <div class="container">
-        <form action='' method="POST" name="login" id="login">
-            <label for="f1">Username:</label><br>
-            <input type="text" id="username" name="username"><br><br>
+        <form action='' method="POST" name="login" id="login" autocomplete="off">
+            <label for="username">Username:</label><br>
+            <input list="userlist" id="username" name="username"><br><br>
+            <datalist id="userlist">
+            </datalist>
+            
+            <script src="action.js"></script>
+
+            <label for="ice-cream-choice"></label>
+            <input list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice">
+
+            <datalist id="ice-cream-flavors">
+                <!-- <option value="Chocolate">
+                <option value="Coconut">
+                <option value="Mint">
+                <option value="Strawberry">
+                <option value="Vanilla"> -->
+            </datalist>
+            
+            <br><br>
             <label for="f2">Password:</label><br>
-            <input type="text" id="password" name="password"><br><br>
+            <input type="text" id="password" name="password" value=""><br><br>
+
+            <label for="remember_me">
+                <input type="checkbox" name="remember_me" id="remember_me"
+                    value="checked">
+                Remember Me
+            </label> <br><br>
+
             <input
                 type="submit"
                 name="Submit"
@@ -25,10 +49,19 @@
                 value="Login"
                 onclick="SubmitLogin(); this.disabled = true;"
             >
-            <p id="answer"></p>
+            <p id="answer">anser</p>
+            <p id="test"></p>
         </form>
         
     </div>
     
+    <!-- <div id="message"></div>
+   <script type="text/javascript">
+      let message = document.getElementById("message");
+      function welcomeFunction() {
+         message.innerHTML = "Function executed successfully on page load."
+      }
+    </script> -->
+
 </body>
 </html>

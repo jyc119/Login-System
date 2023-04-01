@@ -31,6 +31,10 @@ async def check_login(logindata: LoginDetails):
     password = logindata.password
 
     if (username,password) in table:
-        return "Valid Login"
-    return "Invalid Login"
+        return table
+    return table
+
+@app.post("/get-usernames/")
+async def get_username():
+    return "table"
 
