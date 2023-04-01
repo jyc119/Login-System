@@ -1,31 +1,42 @@
 from fastapi import FastAPI, Path, Query, HTTPException, status
 from typing import Optional
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 import database
 
 app = FastAPI()
 
+# added this to app for cross origin resource sharing
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+"""
+The class used to hold in my login details. 
+Fields are usernames and password
+"""
 class LoginDetails(BaseModel):
     username: str
-    password: float
+    password: str
 
 inventory = {}
 table = database.createTable()
 
-@app.post("/create-login/{user_id}")
-def create_login(user_id:int, login:LoginDetails):
-    if user_id in inventory:
-        raise HTTPException(status_code=400, detail="Item ID already exist")
-    
-    inventory[user_id] = login
-    return inventory[user_id]
-
+@app.get("/")
+async def root():
+    """Meh"""
+    return {"message": "Hello World"}
 
 @app.post("/check-login/")
-def check_login(logindata: LoginDetails) -> dict:
+async def check_login(logindata: LoginDetails):
     username = logindata.username
     password = logindata.password
+
     if (username,password) in table:
-        return {"result": "Correct"}
-    return {"result": "Incorrect"}
+        return "Valid Login"
+    return "Invalid Login"
 

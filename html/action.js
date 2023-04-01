@@ -20,6 +20,6 @@ async function SubmitLogin() {
   console.log(responseText); // logs 'OK'
   var index_page = document.getElementById("answer"); 
   index_page.style.color = "blue"; 
-  if(JSON.stringify(responseText).indexOf('overlap') > -1){index_page.style.color = "red"};
+  //if(JSON.stringify(responseText).indexOf('Incorrect') > -1){index_page.style.color = "red"};
   index_page.innerHTML = (responseText);
 }
