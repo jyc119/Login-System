@@ -1,5 +1,4 @@
-from fastapi import FastAPI, Path, Query, HTTPException, status
-from typing import Optional
+from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import database
@@ -25,11 +24,6 @@ class LoginDetails(BaseModel):
 
 inventory = {}
 table = database.createTable()
-
-@app.get("/")
-async def root():
-    """Meh"""
-    return {"message": "Hello World"}
 
 @app.post("/check-login/")
 async def check_login(logindata: LoginDetails):
