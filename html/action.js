@@ -11,11 +11,21 @@ async function SubmitLogin() {
     // data sent from the POST request
     var formData = new FormData(document.forms[0])
 
+    // var boxcheck = document.getElementById("test"); 
+    // var checkbox = document.getElementById("remember_me");
+    // boxcheck.style.color = "blue"; 
+    // if (checkbox.checked){
+    //   boxcheck.innerHTML = " Check box is checked. ";
+    // }else{
+    //   boxcheck.innerHTML = "nothing";
+    // }
+
     // get all form keys and values
     var obj = Object.fromEntries(Array.from(formData.keys())
         .map(key => [key, formData.getAll(key).length > 1 ?
             formData.getAll(key) : formData.get(key)]))
-
+    
+    console.log(obj)
     var jsonreq = (`${JSON.stringify(obj)}`)
 
     const response = await fetch('http://127.0.0.1:8000/check-login/', {

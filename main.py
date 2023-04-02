@@ -21,6 +21,12 @@ Fields are usernames and password
 class LoginDetails(BaseModel):
     username: str
     password: str
+    remember: str
+    
+class LoginDetailsToken(BaseModel):
+    username: str
+    password: str
+    token: bool
 
 inventory = {}
 table = database.createTable()
@@ -29,10 +35,14 @@ table = database.createTable()
 async def check_login(logindata: LoginDetails):
     username = logindata.username
     password = logindata.password
+    remember = logindata.remember
 
     if (username,password) in table:
-        return table
-    return table
+        return "Valid"
+    return "Invalid"
+    # if logindata is False:
+    #     return "valid"
+    # return "invalid"
 
 @app.post("/get-usernames/")
 async def get_username():
