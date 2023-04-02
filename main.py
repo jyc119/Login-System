@@ -21,7 +21,7 @@ Fields are usernames and password
 class LoginDetails(BaseModel):
     username: str
     password: str
-    remember: str
+    token: str
     
 class LoginDetailsToken(BaseModel):
     username: str
@@ -35,11 +35,26 @@ table = database.createTable()
 async def check_login(logindata: LoginDetails):
     username = logindata.username
     password = logindata.password
-    remember = logindata.remember
+    token = logindata.token
+
+    #table[0] = (username,password,True)
+    # for i in range(3):
+    #     print(i)
+    #     if table[i] == (username, password, False) or \
+    #         table[i] == (username,password, True):
+    #         return i
+    # return -1
+
+    if token=="yes":
+        for i in range(3):
+            if table[i] == (username, password, False) or \
+                table[i] == (username,password, True):
+                table[i] = (username,password,1)
+
 
     if (username,password) in table:
-        return "Valid"
-    return "Invalid"
+        return table
+    return table
     # if logindata is False:
     #     return "valid"
     # return "invalid"
