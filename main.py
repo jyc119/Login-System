@@ -51,10 +51,21 @@ async def check_login(logindata: LoginDetails):
                 table[i] == (username,password, True):
                 table[i] = (username,password,1)
 
-
-    if (username,password) in table:
-        return table
-    return table
+    """
+    need a better return format for javascript. Needs to return 
+    valid or invalid as well as list of usernames and passwords that
+    are remembered e.g "True , [u1,p1] , [u2,p2] ...". Split up the 
+    arrays and boolean with a | and for each array split up array into 
+    two items using ,.
+    """
+    print(table)
+    print(username)
+    print(password)
+    if (username,password,False) in table:
+        return "valid"
+    elif (username,password,True) in table:
+        return "valid"
+    return "invalid"
     # if logindata is False:
     #     return "valid"
     # return "invalid"

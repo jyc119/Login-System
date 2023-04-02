@@ -38,7 +38,7 @@ async function SubmitLogin() {
   const responseText = await response.text();
   var index_page = document.getElementById("answer"); 
   index_page.style.color = "blue"; 
-  if(JSON.stringify(responseText).indexOf('Invalid') > -1){index_page.style.color = "red"};
+  //if(JSON.stringify(responseText).indexOf('Invalid') > -1){index_page.style.color = "red"};
   index_page.innerHTML = (responseText);
 }
 
@@ -51,7 +51,7 @@ async function GetUsernames(){
   })
 
   // Waits for a response and inserts the result
-  const responseText = await response.text();
+  const responseText = await response.json();
   var index_page = document.getElementById("answer"); 
   index_page.style.color = "blue"; 
   if(JSON.stringify(responseText).indexOf('Invalid') > -1){index_page.style.color = "red"};
