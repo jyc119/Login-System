@@ -38,22 +38,22 @@ async function SubmitLogin() {
   const responseText = await response.text();
   var index_page = document.getElementById("answer"); 
   index_page.style.color = "blue"; 
-  //if(JSON.stringify(responseText).indexOf('Invalid') > -1){index_page.style.color = "red"};
+  if(JSON.stringify(responseText).indexOf('invalid') > -1){index_page.style.color = "red"};
   index_page.innerHTML = (responseText);
 }
 
 //Used to obtain the usernames of the
-async function GetUsernames(){
+// async function GetUsernames(){
     
-    const response = await fetch('http://127.0.0.1:8000/get-usernames/', {
-    method: "POST",
-    headers: {"Content-type": "application/json; charset=UTF-8"}
-  })
+//     const response = await fetch('http://127.0.0.1:8000/get-usernames/', {
+//     method: "POST",
+//     headers: {"Content-type": "application/json; charset=UTF-8"}
+//   })
 
-  // Waits for a response and inserts the result
-  const responseText = await response.json();
-  var index_page = document.getElementById("answer"); 
-  index_page.style.color = "blue"; 
-  if(JSON.stringify(responseText).indexOf('Invalid') > -1){index_page.style.color = "red"};
-  index_page.innerHTML = (responseText);
-}
+//   // Waits for a response and inserts the result
+//   const responseText = await response.json();
+//   var index_page = document.getElementById("answer"); 
+//   index_page.style.color = "blue"; 
+//   if(JSON.stringify(responseText).indexOf('invalid') > -1){index_page.style.color = "red"};
+//   index_page.innerHTML = (responseText);
+// }

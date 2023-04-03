@@ -31,6 +31,15 @@ class LoginDetailsToken(BaseModel):
 inventory = {}
 table = database.createTable()
 
+def findTokenLogin(result:str):
+    res = ""
+    res += result
+    for n in table:
+        if n[2] == True:
+            res += " "+n[0]+","+n[1]
+    return res
+
+
 @app.post("/check-login/")
 async def check_login(logindata: LoginDetails):
     username = logindata.username
@@ -45,26 +54,23 @@ async def check_login(logindata: LoginDetails):
     #         return i
     # return -1
 
-    if token=="yes":
-        for i in range(3):
-            if table[i] == (username, password, False) or \
-                table[i] == (username,password, True):
-                table[i] = (username,password,1)
-
     """
     need a better return format for javascript. Needs to return 
     valid or invalid as well as list of usernames and passwords that
-    are remembered e.g "True , [u1,p1] , [u2,p2] ...". Split up the 
+    are remembered e.g "True , [u1,p1] , [u2,p2] ..." output - "True u1,p1 u2,p2". Split up the 
     arrays and boolean with a | and for each array split up array into 
     two items using ,.
     """
     print(table)
     print(username)
     print(password)
-    if (username,password,False) in table:
-        return "valid"
-    elif (username,password,True) in table:
-        return "valid"
+    if (username,password,False) in table or (username,password,True) in table:
+        if token=="yes":
+            for i in range(3):
+                if table[i] == (username, password, False) or \
+                    table[i] == (username,password, True):
+                    table[i] = (username,password,1)
+        return findTokenLogin("True")
     return "invalid"
     # if logindata is False:
     #     return "valid"
