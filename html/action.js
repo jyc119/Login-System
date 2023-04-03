@@ -34,12 +34,25 @@ async function SubmitLogin() {
     headers: {"Content-type": "application/json; charset=UTF-8"}
   })
 
-  // Waits for a response and inserts the result
+  // Waits for a response and removes quotation at beginning and end.
   const responseText = await response.text();
+  var receivedResponse = responseText.slice(1,responseText.length-1);
+
+  // Splits string into arrays
+  var splitString = receivedResponse.split(" ");
+  if(splitString.length > 1){
+    for (var i=1; i < splitString.length;++i){
+      var tmp = splitString[i].split(",");
+      splitString[i] = tmp;
+    }
+  }
+
   var index_page = document.getElementById("answer"); 
+  var testing = document.getElementById("test"); 
   index_page.style.color = "blue"; 
   if(JSON.stringify(responseText).indexOf('invalid') > -1){index_page.style.color = "red"};
-  index_page.innerHTML = (responseText);
+  index_page.innerHTML = (receivedResponse);
+  testing.innerHTML = (splitString[1][0]);
 }
 
 //Used to obtain the usernames of the
