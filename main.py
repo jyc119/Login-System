@@ -71,7 +71,7 @@ async def check_login(logindata: LoginDetails):
                     table[i] == (username,password, True):
                     table[i] = (username,password,1)
         return findTokenLogin("True")
-    return "invalid"
+    return findTokenLogin("False")
     # if logindata is False:
     #     return "valid"
     # return "invalid"
