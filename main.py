@@ -46,21 +46,6 @@ async def check_login(logindata: LoginDetails):
     password = logindata.password
     token = logindata.token
 
-    #table[0] = (username,password,True)
-    # for i in range(3):
-    #     print(i)
-    #     if table[i] == (username, password, False) or \
-    #         table[i] == (username,password, True):
-    #         return i
-    # return -1
-
-    """
-    need a better return format for javascript. Needs to return 
-    valid or invalid as well as list of usernames and passwords that
-    are remembered e.g "True , [u1,p1] , [u2,p2] ..." output - "True u1,p1 u2,p2". Split up the 
-    arrays and boolean with a | and for each array split up array into 
-    two items using ,.
-    """
     print(table)
     print(username)
     print(password)
@@ -70,11 +55,8 @@ async def check_login(logindata: LoginDetails):
                 if table[i] == (username, password, False) or \
                     table[i] == (username,password, True):
                     table[i] = (username,password,1)
-        return findTokenLogin("True")
-    return findTokenLogin("False")
-    # if logindata is False:
-    #     return "valid"
-    # return "invalid"
+        return findTokenLogin("Valid")
+    return findTokenLogin("Invalid")
 
 @app.post("/get-usernames/")
 async def get_username():

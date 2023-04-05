@@ -14,8 +14,17 @@
     <h1>Login Page</h1>
     <div class="container">
         <form action='' method="POST" name="login" id="login" autocomplete="off">
+
+            <input
+                type="submit"
+                name="usernames"
+                id="btn_id"
+                value="Look for Usernames"
+                onclick="getUsername(); this.disabled = true;"
+            > <br><br>
+
             <label for="username">Username:</label><br>
-            <input list="userlist" id="username" name="username"><br><br>
+            <input list="userlist" id="username" name="username" onchange="getPassword()"><br><br>
             <datalist id="userlist">
             </datalist>
             
@@ -24,26 +33,10 @@
             <label for="f2">Password:</label><br>
             <input type="text" id="password" name="password" value=""><br><br>
 
-            <!-- <label for="ice-cream-choice"></label>
-            <input list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice">
-
-            <datalist id="ice-cream-flavors">
-                <option value="Chocolate">
-                <option value="Coconut">
-                <option value="Mint">
-                <option value="Strawberry">
-                <option value="Vanilla">
-            </datalist> -->
             <label for="token">Remember me:</label><br>
             <input type="text" id="token" name="token" value=""><br><br>
             
             <br><br>
-
-            <!-- <label for="remember_me">
-                <input type="checkbox" name="remember_me" id="remember_me"
-                    value="checked">
-                Remember Me
-            </label> <br><br> -->
 
             <input
                 type="submit"
@@ -52,26 +45,11 @@
                 value="Login"
                 onclick="SubmitLogin(); this.disabled = true;"
             >
-            <input
-                type="submit"
-                name="Look for usernames"
-                id="btn_id"
-                value="usernames"
-                onclick="getUsername(); this.disabled = true;"
-            >
+        
             <p id="answer">anser</p>
-            <p id="test">dn</p>
         </form>
         
     </div>
-    
-    <!-- <div id="message"></div>
-   <script type="text/javascript">
-      let message = document.getElementById("message");
-      function welcomeFunction() {
-         message.innerHTML = "Function executed successfully on page load."
-      }
-    </script> -->
 
 </body>
 </html>
