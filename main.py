@@ -46,9 +46,6 @@ async def check_login(logindata: LoginDetails):
     password = logindata.password
     token = logindata.token
 
-    print(table)
-    print(username)
-    print(password)
     if (username,password,False) in table or (username,password,True) in table:
         if token=="yes":
             for i in range(3):
