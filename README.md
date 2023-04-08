@@ -1,12 +1,13 @@
 # Login-System
 
+In this login system, we are creating a simple login system with a small backend server. FastAPI and SQlite is used for our backend and database while Javascript is used for our front end. 
+
 ## Install packages
 
-To install the packages we are using, run the following commands in terminal
+To install the packages we are using, run the following command in terminal
 
 ```
-pip install fastapi
-pip install uvicorn
+pip install -r requirements.txt
 ```
 
 ## Setup 
@@ -46,7 +47,7 @@ The project structure is shown above where the information is written to the HTM
 
 ## Database 
 
-Sqlite3 is the database used to store information about the different usernames and passwords. The following table shows the different login details in the database when the user starts the server.
+SQlite is the database used to store information about the different usernames and passwords. The following table shows the different login details in the database when the user starts the server.
 
 | Username | Password |  Token  |
 | -------- | -------  | ------- |
@@ -75,21 +76,30 @@ On the other hand, when a user enters valid login details, the form will output 
 ### Remember me Token
 To make the login system remember the user after they have input correct details:
 
-* Type in **yes** in the remember me input box.
-* Refresh the page and click on 'Look for usernames'
+* Correctly input login details and type in **yes** in the remember me input box.
+* Click Login and refresh the page.
+* Click on 'Look for Usernames'.
 * A dropdown list will appear at usernames and when the user clicks on an option, the password field will automatically fill with the correct password with that username. 
 
-An example of this can be seen below where we click on **Look for usernames** and this creates the drop down box.
+An example of this can be seen below where we click on **Look for Usernames** and this creates the drop down box.
 ![img](https://github.com/jyc119/Login-System/blob/main/misc/dropdown_user.png)
 
 When we click on the option **lf12**, the password field is automatically filled with lf12's password which is tiger. From here, we can submit and confirm it is a valid login. 
 ![img](https://github.com/jyc119/Login-System/blob/main/misc/dropdown_pass.png)
 
+### Restarting the uvicorn Server
+
+To restart the uvicorn server, we have to first shut down the server through the following command Ctrl+C/Cmd+C. Next, we have to delete the **logins.db** file that is created when the server is launch as the python file cannot create a databse file if an existing one is already there. Now we can run the command in step 2 of the setup section again to launch the server.
+
+```
+python -m uvicorn main:app --reload
+```
+
 ## Implementation Details
 
 ### HTML interaction with Javascript
 
-In the login button used to submit the form, I inserted an attribute in the input field called 'onclick'. The attribute is shown in the code below where we execute the function SubmitLogin() which is a Javascript function and disable the button when it is pressed. This is how the HTML file interacts with the JavaScript file.
+In the login button used to submit the form, I inserted an attribute in the input field called 'onclick'. The attribute is shown in the code below where we execute the function SubmitLogin() which is a Javascript function and disables the button when it is pressed. This is how the HTML file interacts with the JavaScript file.
 
 ```
 onclick="SubmitLogin(); this.disabled = true;"
@@ -97,7 +107,7 @@ onclick="SubmitLogin(); this.disabled = true;"
 
 ### Javascript with FastAPI
 
-In the async function 'SubmitLogin()', we are converting the input field values into a json object and this is sent to the API with the fetch function. The location it is sent to is http://127.0.0.1:8000/check-login/ using the POST method. In the 'check_login()' function of FastAPI, it updates the database with True in the remember me token if the username and password matches one of the records and the user typed 'yes'. Next, it checks if the details matches one of the records and returns a string in the following form:
+In the async function **'SubmitLogin()'**, we are converting the input field values into a json object and this is sent to the API with the fetch function. The location it is sent to is http://127.0.0.1:8000/check-login/ using the POST method. In the **'check_login()'** function of FastAPI, it updates the database with True in the remember me token if the username and password matches one of the records and the user typed 'yes'. Next, it checks if the details matches one of the records and returns a string in the following form:
 
 <br><br>
 
@@ -113,4 +123,4 @@ The Javascript obtains this result and outputs the results in a paragraph field 
 
 ### Rememeber me Javascript implementation
 
-To obtain the list of login details with a token, I created another button at the top called 'Look for Usernames'. When this button is clicked, the javascript function **getUsername()** is used where the list of login details received from FastAPI is used to insert into a dropdown list for the username field. The input field will automatically be filled when a dropdown option in username is selected by altering the value attribute.
+To obtain the list of login details with a token, I created another button at the top called 'Look for Usernames'. When this button is clicked, the javascript function **getUsername()** is used where the list of login details received from FastAPI is used to insert into a dropdown list for the username field. The password input field will automatically be filled when a dropdown option in username is selected by altering the value attribute.
