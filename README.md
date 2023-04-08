@@ -39,11 +39,11 @@ Open login.html, right click the contents and select Open with live server. Alte
 
 Once we started the Univcorn server, we can access the API using this link: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
-## Project Structure
+## Login System Structure
 
 ![img](https://github.com/jyc119/Login-System/blob/main/misc/Project_structure.png)
 
-The project structure is shown above where the information is written to the HTML form and passed into Javascript. From the Javascript file, the information is sent to FastAPI where it checks if the details match any of the records in the database. Based on this information, it goes all the way back to the HTML file to output the results
+The system structure is shown above where the information is written to the HTML form and passed into Javascript. From the Javascript file, the information is sent to FastAPI where it checks if the details match any of the records in the database. Based on this information, it goes all the way back to the HTML file to output the results
 
 ## Database 
 
